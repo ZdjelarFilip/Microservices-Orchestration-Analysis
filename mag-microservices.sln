@@ -1,0 +1,100 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34902.65
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAuthenticationService", "microservices\services\UserAuthentication\UserAuthenticationService\UserAuthenticationService.csproj", "{2241BD2E-5030-4F5A-8FB8-2B5B47325E57}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManagementService", "microservices\services\OrderManagement\OrderManagementService\OrderManagementService.csproj", "{7FFFB1D4-EEF2-4DC5-A6DD-862B4D57FA65}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogManagementService", "microservices\services\CatalogManagement\CatalogManagementService\CatalogManagementService.csproj", "{41888B57-97CF-43BA-A0E9-D16F423190B4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CartManagementService", "microservices\services\CartManagement\CartManagementService\CartManagementService.csproj", "{E0FED8DB-E5DF-4434-B57C-49B20BB28663}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerUI", "microservices\interfaces\CustomerUI\CustomerUI\CustomerUI.csproj", "{BE356ED6-59CC-469A-912E-9136B2236AE5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminUI", "microservices\interfaces\AdminUI\AdminUI\AdminUI.csproj", "{38A86900-D26A-4277-92B5-611D42101453}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "frontend", "frontend", "{566E4271-0EA1-45CC-A472-6DDAD398D88B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{40A4B0CA-4456-4FBB-B7C7-4EE00DBE7162}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deployments", "deployments", "{485A8CAB-9BBE-43DB-88BB-894C0EFB00FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dockerSwarm", "dockerSwarm", "{40B576F2-4BD9-4D5F-8579-DCFD09F8D1E1}"
+	ProjectSection(SolutionItems) = preProject
+		microservices\deployments\dockerSwarm\docker-compose.yaml = microservices\deployments\dockerSwarm\docker-compose.yaml
+		microservices\deployments\dockerSwarm\prometheus.yaml = microservices\deployments\dockerSwarm\prometheus.yaml
+		microservices\deployments\dockerSwarm\userauth.env = microservices\deployments\dockerSwarm\userauth.env
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "kubernetes", "kubernetes", "{0E16BF16-CE17-4586-B884-2707608F5052}"
+	ProjectSection(SolutionItems) = preProject
+		microservices\deployments\kubernetes\adminUI-deployment.yaml = microservices\deployments\kubernetes\adminUI-deployment.yaml
+		microservices\deployments\kubernetes\cartManagement-deployment.yaml = microservices\deployments\kubernetes\cartManagement-deployment.yaml
+		microservices\deployments\kubernetes\catalogManagement-deployment.yaml = microservices\deployments\kubernetes\catalogManagement-deployment.yaml
+		microservices\deployments\kubernetes\customerUI-deployment.yaml = microservices\deployments\kubernetes\customerUI-deployment.yaml
+		microservices\deployments\kubernetes\mongodb-statefulset.yaml = microservices\deployments\kubernetes\mongodb-statefulset.yaml
+		microservices\deployments\kubernetes\userauth.env.txt = microservices\deployments\kubernetes\userauth.env.txt
+		microservices\deployments\kubernetes\userAuthentication-deployment.yaml = microservices\deployments\kubernetes\userAuthentication-deployment.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "openshift", "openshift", "{E7A78918-BFD6-4B46-AD5B-D76D095E94B9}"
+	ProjectSection(SolutionItems) = preProject
+		microservices\deployments\openShift\adminUI-deployment.yaml = microservices\deployments\openShift\adminUI-deployment.yaml
+		microservices\deployments\openShift\cartManagement-deployment.yaml = microservices\deployments\openShift\cartManagement-deployment.yaml
+		microservices\deployments\openShift\catalogManagement-deployment.yaml = microservices\deployments\openShift\catalogManagement-deployment.yaml
+		microservices\deployments\openShift\customerUI-deployment.yaml = microservices\deployments\openShift\customerUI-deployment.yaml
+		microservices\deployments\openShift\mongodb-deployment.yaml = microservices\deployments\openShift\mongodb-deployment.yaml
+		microservices\deployments\openShift\userAuthentication-deployment.yaml = microservices\deployments\openShift\userAuthentication-deployment.yaml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2241BD2E-5030-4F5A-8FB8-2B5B47325E57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2241BD2E-5030-4F5A-8FB8-2B5B47325E57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2241BD2E-5030-4F5A-8FB8-2B5B47325E57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2241BD2E-5030-4F5A-8FB8-2B5B47325E57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FFFB1D4-EEF2-4DC5-A6DD-862B4D57FA65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FFFB1D4-EEF2-4DC5-A6DD-862B4D57FA65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FFFB1D4-EEF2-4DC5-A6DD-862B4D57FA65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FFFB1D4-EEF2-4DC5-A6DD-862B4D57FA65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41888B57-97CF-43BA-A0E9-D16F423190B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41888B57-97CF-43BA-A0E9-D16F423190B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41888B57-97CF-43BA-A0E9-D16F423190B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41888B57-97CF-43BA-A0E9-D16F423190B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0FED8DB-E5DF-4434-B57C-49B20BB28663}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0FED8DB-E5DF-4434-B57C-49B20BB28663}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0FED8DB-E5DF-4434-B57C-49B20BB28663}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0FED8DB-E5DF-4434-B57C-49B20BB28663}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE356ED6-59CC-469A-912E-9136B2236AE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE356ED6-59CC-469A-912E-9136B2236AE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE356ED6-59CC-469A-912E-9136B2236AE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE356ED6-59CC-469A-912E-9136B2236AE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38A86900-D26A-4277-92B5-611D42101453}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38A86900-D26A-4277-92B5-611D42101453}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38A86900-D26A-4277-92B5-611D42101453}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38A86900-D26A-4277-92B5-611D42101453}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2241BD2E-5030-4F5A-8FB8-2B5B47325E57} = {40A4B0CA-4456-4FBB-B7C7-4EE00DBE7162}
+		{7FFFB1D4-EEF2-4DC5-A6DD-862B4D57FA65} = {40A4B0CA-4456-4FBB-B7C7-4EE00DBE7162}
+		{41888B57-97CF-43BA-A0E9-D16F423190B4} = {40A4B0CA-4456-4FBB-B7C7-4EE00DBE7162}
+		{E0FED8DB-E5DF-4434-B57C-49B20BB28663} = {40A4B0CA-4456-4FBB-B7C7-4EE00DBE7162}
+		{BE356ED6-59CC-469A-912E-9136B2236AE5} = {566E4271-0EA1-45CC-A472-6DDAD398D88B}
+		{38A86900-D26A-4277-92B5-611D42101453} = {566E4271-0EA1-45CC-A472-6DDAD398D88B}
+		{40B576F2-4BD9-4D5F-8579-DCFD09F8D1E1} = {485A8CAB-9BBE-43DB-88BB-894C0EFB00FB}
+		{0E16BF16-CE17-4586-B884-2707608F5052} = {485A8CAB-9BBE-43DB-88BB-894C0EFB00FB}
+		{E7A78918-BFD6-4B46-AD5B-D76D095E94B9} = {485A8CAB-9BBE-43DB-88BB-894C0EFB00FB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F393137E-BAAA-4A42-B979-22ABCEB4967F}
+	EndGlobalSection
+EndGlobal

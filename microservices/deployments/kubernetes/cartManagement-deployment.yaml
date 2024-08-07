@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cartmanagement
+  labels:
+    app: cartmanagement
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cartmanagement
+  template:
+    metadata:
+      labels:
+        app: cartmanagement
+    spec:
+      containers:
+      - name: cartmanagement
+        image: lfy8/microservices-cartmanagement:latest
+        ports:
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: env
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cartmanagement
+spec:
+  selector:
+    app: cartmanagement
+  ports:
+    - name: cartmanagement
+      protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer

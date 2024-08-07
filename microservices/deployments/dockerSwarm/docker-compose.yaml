@@ -1,0 +1,110 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:4.4
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - my_network
+
+  catalogManagement:
+    image: lfy8/microservices-catalogmanagement:latest
+    env_file:
+      - userauth.env
+    depends_on:
+      - mongo
+    ports:
+      - 5067:80
+    networks:
+      - my_network
+
+  cartManagement:
+    image: lfy8/microservices-cartmanagement:latest
+    env_file:
+      - userauth.env
+    depends_on:
+      - mongo
+    ports:
+      - 5066:80
+    networks:
+      - my_network
+
+  userAuthentication:
+    image: lfy8/microservices-userauthentication:latest
+    env_file:
+      - userauth.env
+    depends_on:
+      - mongo
+    ports:
+      - 5070:80
+    networks:
+      - my_network
+
+  orderManagement:
+    image: lfy8/microservices-ordermanagement:latest
+    env_file:
+      - userauth.env
+    depends_on:
+      - mongo
+      - cartManagement
+    ports:
+      - 5068:80
+    networks:
+      - my_network
+
+  customerui:
+    image: lfy8/microservices-customerui:latest
+    env_file:
+      - userauth.env
+    ports:
+      - 5010:80
+    networks:
+      - my_network
+
+  adminui:
+    image: lfy8/microservices-adminui:latest
+    env_file:
+      - userauth.env
+    ports:
+      - 5009:80
+    networks:
+      - my_network
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+    networks:
+      - my_network
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - 3000:3000
+    networks:
+      - my_network
+    depends_on:
+      - prometheus
+
+  cadvisor:
+    image: google/cadvisor:latest
+    volumes:
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    ports:
+      - 8080:8080
+    networks:
+      - my_network
+
+volumes:
+  mongo-data:
+
+networks:
+  my_network:
+    driver: overlay

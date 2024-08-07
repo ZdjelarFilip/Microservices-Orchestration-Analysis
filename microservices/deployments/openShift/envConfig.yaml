@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: envconfig
+  namespace: default
+data:
+  ASPNETCORE_URLS: "http://+:80"
+  MongoDatabaseSettings__DatabaseUri: "mongodb://mongo:27017"
+  CartManagementUrl: "http://cartmanagement-default.apps.apps.mag/api/"
+  CatalogManagementUrl: "http://catalogmanagement-default.apps.apps.mag/api/"
+  OrderManagementUrl: "http://ordermanagement-default.apps.apps.mag/api/"
+  UserAuthenticationUrl: "http://userauthentication-default.apps.apps.mag/api/"
+  HttpClients__CartManagementUrl: "http://cartManagement-default.apps.apps.mag/api/"
+  HttpClients__CatalogManagementUrl: "http://catalogManagement-default.apps.apps.mag/api/"
+  HttpClients__OrderManagementUrl: "http://orderManagement-default.apps.apps.mag/api/"
+  HttpClients__UserAuthenticationUrl: "http://userAuthentication-default.apps.apps.mag/api/"

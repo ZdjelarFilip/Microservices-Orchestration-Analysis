@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userauthentication
+  labels:
+    app: userauthentication
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: userauthentication
+  template:
+    metadata:
+      labels:
+        app: userauthentication
+    spec:
+      containers:
+      - name: userauthentication
+        image: lfy8/microservices-userauthentication:latest
+        ports:
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: env
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: userauthentication
+spec:
+  selector:
+    app: userauthentication
+  ports:
+    - name: userauthentication
+      protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer

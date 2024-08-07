@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customerui
+  labels:
+    app: customerui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: customerui
+  template:
+    metadata:
+      labels:
+        app: customerui
+    spec:
+      containers:
+      - name: customerui
+        image: lfy8/microservices-customerui:latest
+        ports:
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: env
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: customerui
+spec:
+  selector:
+    app: customerui
+  ports:
+    - name: customerui
+      protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer

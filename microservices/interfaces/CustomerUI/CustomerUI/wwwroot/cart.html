@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="mainContent" class="container mt-5 hidden">
+        <div class="header d-flex justify-content-between align-items-center">
+            <h2>Cart</h2>
+            <button id="logout" class="btn btn-secondary">Logout</button>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" href="store.html">Store</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Cart</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="order.html">Orders</a>
+            </li>
+        </ul>
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>CatalogItemId</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="cartContainer">
+            </tbody>
+        </table>
+        <div class="actions">
+            <button id="order" class="btn btn-primary">Order</button>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="module" src="js/cart.js"></script>
+</body>
+</html>

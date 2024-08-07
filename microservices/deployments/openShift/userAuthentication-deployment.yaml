@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  name: userauthentication
+  labels:
+    app: userauthentication
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: userauthentication
+  template:
+    metadata:
+      labels:
+        app: userauthentication
+    spec:
+      securityContext:
+        fsGroup: 1001
+      containers:
+      - name: userauthentication
+        image: lfy8/microservices-userauthentication:latest
+        ports:
+        - containerPort: 81
+        envFrom:
+        - configMapRef:
+            name: envconfig
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: default
+  name: userauthentication
+spec:
+  selector:
+    app: userauthentication
+  ports:
+  - name: userauthentication
+    protocol: TCP
+    port: 44397
+    targetPort: 80
+
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  namespace: default
+  name: userauthentication
+spec:
+  to:
+    kind: Service
+    name: userauthentication
+  port:
+    targetPort: 80

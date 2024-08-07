@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  name: catalogmanagement
+  labels:
+    app: catalogmanagement
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: catalogmanagement
+  template:
+    metadata:
+      labels:
+        app: catalogmanagement
+    spec:
+      securityContext:
+        fsGroup: 1001
+      containers:
+      - name: catalogmanagement
+        image: lfy8/microservices-catalogmanagement:latest
+        ports:
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: envconfig
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: default
+  name: catalogmanagement
+spec:
+  selector:
+    app: catalogmanagement
+  ports:
+  - name: catalogmanagement
+    protocol: TCP
+    port: 44326
+    targetPort: 80
+
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  namespace: default
+  name: catalogmanagement
+spec:
+  to:
+    kind: Service
+    name: catalogmanagement
+  port:
+    targetPort: 80

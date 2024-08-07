@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  name: customerui
+  labels:
+    app: customerui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: customerui
+  template:
+    metadata:
+      labels:
+        app: customerui
+    spec:
+      securityContext:
+        fsGroup: 1001 
+      containers:
+      - name: customerui
+        image: lfy8/microservices-customerui:latest
+        ports:
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: envconfig
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: default
+  name: customerui
+spec:
+  selector:
+    app: customerui
+  ports:
+  - name: customerui
+    protocol: TCP
+    port: 44317
+    targetPort: 80
+
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  namespace: default
+  name: customerui
+spec:
+  to:
+    kind: Service
+    name: customerui
+  port:
+    targetPort: 80

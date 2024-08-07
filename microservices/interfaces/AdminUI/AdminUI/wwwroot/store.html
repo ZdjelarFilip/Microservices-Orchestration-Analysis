@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Management</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="mainContent" class="container mt-5 hidden">
+        <div class="header d-flex justify-content-between align-items-center mb-3">
+            <h2>Store</h2>
+            <button id="logout" class="btn btn-secondary">Logout</button>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Store</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="order.html">Orders</a>
+            </li>
+        </ul>
+        <div class="table-container">
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="catalogContainer">
+                </tbody>
+            </table>
+        </div>
+        <div class="actions d-flex justify-content-end">
+            <button id="add" class="btn btn-primary custom-btn mt-3">Add Item</button>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="module" src="js/store.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  name: cartmanagement
+  labels:
+    app: cartmanagement
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cartmanagement
+  template:
+    metadata:
+      labels:
+        app: cartmanagement
+    spec:
+      securityContext:
+        fsGroup: 1001
+      containers:
+      - name: cartmanagement
+        image: lfy8/microservices-cartmanagement:latest
+        ports:
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: envconfig
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: default
+  name: cartmanagement
+spec:
+  selector:
+    app: cartmanagement
+  ports:
+  - name: cartmanagement
+    protocol: TCP
+    port: 44388
+    targetPort: 80
+
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  namespace: default
+  name: cartmanagement
+spec:
+  to:
+    kind: Service
+    name: cartmanagement
+  port:
+    targetPort: 80

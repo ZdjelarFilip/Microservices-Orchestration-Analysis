@@ -1,0 +1,89 @@
+services:
+  mongo:
+    image: mongo
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - default
+
+  adminui:
+    build: ../../interfaces/AdminUI/AdminUI
+    image: mag/adminui:latest
+    depends_on:
+      - userauthentication
+    ports:
+      - 5009:80
+    env_file:
+      - userauth.env
+    networks:
+      - default
+
+  customerui:
+    build: ../../interfaces/CustomerUI/CustomerUI
+    image: mag/customerui:latest
+    depends_on:
+      - userauthentication
+    ports:
+      - 5010:80
+    env_file:
+      - userauth.env
+    networks:
+      - default
+
+  cartmanagement:
+    build: ../../services/CartManagement/CartManagementService
+    image: mag/cartmanagement:latest
+    depends_on:
+      - mongo
+    ports:
+      - 5066:80
+    env_file:
+      - userauth.env
+    networks:
+      - default
+
+  catalogmanagement:
+    build: ../../services/CatalogManagement/CatalogManagementService
+    image: mag/catalogmanagement:latest
+    depends_on:
+      - mongo
+    ports:
+      - 5067:80
+    env_file:
+      - userauth.env
+    networks:
+      - default
+
+  ordermanagement:
+    build: ../../services/OrderManagement/OrderManagementService
+    image: mag/ordermanagement:latest
+    depends_on:
+      - mongo
+      - cartmanagement
+    ports:
+      - 5068:80
+    env_file:
+      - userauth.env
+    networks:
+      - default
+
+  userauthentication:
+    build: ../../services/UserAuthentication/UserAuthenticationService
+    image: mag/userauthentication:latest
+    depends_on:
+      - mongo
+    ports:
+      - 5070:80
+    env_file:
+      - userauth.env
+    networks:
+      - default
+
+volumes:
+  mongo-data:
+
+networks:
+  default:
+    driver: overlay
